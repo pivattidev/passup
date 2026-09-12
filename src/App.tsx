@@ -1,13 +1,17 @@
+import { Outlet } from 'react-router-dom'
 import Cabecalho from './components/Cabecalho'
 import Rodape from './components/Rodape'
-import Home from './pages/Home/Home'
 
 export default function App() {
   return (
-    <>
+    <div className="flex min-h-screen flex-col">
       <Cabecalho />
-      <Home/>
+
+      <div className="flex-1">
+        <Outlet />
+      </div>
+
       <Rodape />
-    </>
+    </div>
   )
 }
