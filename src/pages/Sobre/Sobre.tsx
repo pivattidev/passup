@@ -22,6 +22,20 @@ export default function Sobre() {
           </p>
         </div>
       </section>
+      <section className="mx-auto mt-10 max-w-[1600px] rounded-2xl bg-[#155EEF] p-8 text-white">
+        <p className="font-semibold text-blue-100">
+          Nossa missão
+        </p>
+
+        <h2 className="mt-3 max-w-3xl text-3xl leading-tight font-bold">
+          Facilitar o acesso à mobilidade por meio da participação.
+        </h2>
+
+        <p className="mt-4 max-w-3xl leading-7 text-blue-50">
+          Transformar o dia a dia de quem utiliza o transporte público com uma
+          plataforma simples, acessível e voltada à geração de benefícios.
+        </p>
+      </section>
     </main>
   )
 }
