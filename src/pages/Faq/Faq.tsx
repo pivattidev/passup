@@ -21,6 +21,7 @@ export default function Faq() {
           {perguntasFrequentes.map((item) => (
             <ItemFaq
               key={item.id}
+              id={item.id}
               pergunta={item.pergunta}
               resposta={item.resposta}
             />
