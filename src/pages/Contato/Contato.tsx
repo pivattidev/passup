@@ -2,7 +2,8 @@ import { useForm } from 'react-hook-form'
 import type { DadosContato } from '../../types/Contato'
 
 export default function Contato() {
-  const { register, handleSubmit, reset } = useForm<DadosContato>()
+  const { register, handleSubmit, reset, formState } = useForm<DadosContato>()
+  const { errors } = formState
 
   function enviarMensagem() {
     reset()
@@ -21,22 +22,64 @@ export default function Contato() {
       >
         <div>
           <label htmlFor="nome">Nome</label>
-          <input id="nome" type="text" {...register('nome')} />
+          <input
+            id="nome"
+            type="text"
+            {...register('nome', {
+              required: 'Informe seu nome.',
+              validate: (valor) =>
+                valor.trim().length >= 3 ||
+                'O nome precisa ter pelo menos 3 caracteres.',
+            })}
+          />
+          {errors.nome && <p>{errors.nome.message}</p>}
         </div>
 
         <div>
           <label htmlFor="email">E-mail</label>
-          <input id="email" type="email" {...register('email')} />
+          <input
+            id="email"
+            type="email"
+            {...register('email', {
+              required: 'Informe seu e-mail.',
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: 'Digite um e-mail válido.',
+              },
+            })}
+          />
+          {errors.email && <p>{errors.email.message}</p>}
         </div>
 
         <div>
           <label htmlFor="assunto">Assunto</label>
-          <input id="assunto" type="text" {...register('assunto')} />
+          <input
+            id="assunto"
+            type="text"
+            {...register('assunto', {
+              required: 'Informe o assunto.',
+              minLength: {
+                value: 4,
+                message: 'O assunto precisa ter pelo menos 4 caracteres.',
+              },
+            })}
+          />
+          {errors.assunto && <p>{errors.assunto.message}</p>}
         </div>
 
         <div>
           <label htmlFor="mensagem">Mensagem</label>
-          <textarea id="mensagem" rows={5} {...register('mensagem')}></textarea>
+          <textarea
+            id="mensagem"
+            rows={5}
+            {...register('mensagem', {
+              required: 'Escreva sua mensagem.',
+              validate: (valor) =>
+                valor.trim().length >= 20 ||
+                'A mensagem precisa ter pelo menos 20 caracteres.',
+            })}
+          ></textarea>
+          {errors.mensagem && <p>{errors.mensagem.message}</p>}
         </div>
 
         <button type="submit">Enviar mensagem</button>
