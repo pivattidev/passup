@@ -19,7 +19,7 @@ export default function Cadastro() {
   const { usuarioCadastrado, cadastrarUsuario } =
     useOutletContext<ContextoAplicacao>()
 
-  const { register, handleSubmit, watch, reset, setError, formState } =
+  const { register, handleSubmit, reset, setError, formState } =
     useForm<DadosCadastro>({
       defaultValues: {
         aceitarTermos: false,
@@ -27,7 +27,6 @@ export default function Cadastro() {
     })
 
   const { errors } = formState
-  const senhaDigitada = watch('senha')
 
   function enviarCadastro(dados: DadosCadastro) {
     const emailInformado = dados.email.trim().toLowerCase()
@@ -333,8 +332,8 @@ export default function Cadastro() {
                 }`}
                 {...register('confirmarSenha', {
                   required: 'Confirme sua senha.',
-                  validate: (valor) =>
-                    valor === senhaDigitada ||
+                  validate: (valor, dadosFormulario) =>
+                    valor === dadosFormulario.senha ||
                     'As senhas precisam ser iguais.',
                 })}
               />
