@@ -10,6 +10,7 @@ import PaginaNaoEncontrada from '../pages/PaginaNaoEncontrada/PaginaNaoEncontrad
 import Resgate from '../pages/Resgate/Resgate'
 import Saldo from '../pages/Saldo/Saldo'
 import Sobre from '../pages/Sobre/Sobre'
+import DetalheResgate from '../pages/DetalheResgate/DetalheResgate'
 
 export const router = createBrowserRouter([
   {
@@ -55,6 +56,14 @@ export const router = createBrowserRouter([
       {
         path: '*',
         element: <PaginaNaoEncontrada />,
+      },
+      {
+        path: 'resgate',
+        element: <Resgate />,
+      },
+      {
+        path: 'resgate/:id',
+        element: <DetalheResgate />,
       },
     ],
   },
