@@ -26,9 +26,15 @@ export default function Cabecalho() {
       >
         <Link
           to="/"
-          className="text-xl font-bold text-[#0B1F3A]"
-          onClick={fecharMenu}>
-          Pass Up (ICONE AINDA NÃO FEITO)
+          className="flex shrink-0 rounded-lg focus-visible:ring-4 focus-visible:ring-blue-100 focus-visible:outline-none"
+          onClick={fecharMenu}
+          aria-label="Ir para a página inicial"
+        >
+          <img
+            src="/images/logo-passup.png"
+            alt="Pass Up"
+            className="h-10 w-auto object-contain min-[480px]:h-12"
+          />
         </Link>
 
         <button
@@ -45,7 +51,7 @@ export default function Cabecalho() {
           id="menu-principal"
           className={`
             ${menuAberto ? 'flex' : 'hidden'}
-            absolute left-0 top-full z-10 w-full flex-col gap-4
+            absolute top-full left-0 z-10 w-full flex-col gap-4
             border-b border-[#D6E4FF] bg-white p-4
             min-[992px]:static min-[992px]:flex min-[992px]:w-auto
             min-[992px]:flex-row min-[992px]:items-center
