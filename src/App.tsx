@@ -6,14 +6,21 @@ import type { ContextoAplicacao, Usuario } from './types/Usuario'
 
 export default function App() {
   const [usuarioCadastrado, setUsuarioCadastrado] = useState<Usuario | null>(null)
+  const [usuarioLogado, setUsuarioLogado] = useState<Usuario | null>(null)
 
   function cadastrarUsuario(usuario: Usuario) {
     setUsuarioCadastrado(usuario)
   }
 
+  function entrar(usuario: Usuario) {
+    setUsuarioLogado(usuario)
+  }
+
   const contextoAplicacao: ContextoAplicacao = {
     usuarioCadastrado,
+    usuarioLogado,
     cadastrarUsuario,
+    entrar,
   }
 
   return (
