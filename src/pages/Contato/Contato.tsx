@@ -1,13 +1,39 @@
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import type { DadosContato } from '../../types/Contato'
 
 export default function Contato() {
+  const [nomeEnviado, setNomeEnviado] = useState('')
+  const [mensagemEnviada, setMensagemEnviada] = useState(false)
   const { register, handleSubmit, reset, formState } = useForm<DadosContato>()
   const { errors } = formState
 
-  function enviarMensagem() {
-    reset()
-  }
+  function enviarMensagem(dados: DadosContato) {
+  setNomeEnviado(dados.nome.trim())
+  setMensagemEnviada(true)
+  reset()
+}
+if (mensagemEnviada) {
+  return (
+    <main className="px-6 py-20 text-center">
+      <h1 className="text-4xl font-bold text-[#0B1F3A]">
+        Mensagem enviada!
+      </h1>
+
+      <p className="mt-4 text-[#475467]">
+        Obrigado, {nomeEnviado}. Sua mensagem foi recebida.
+      </p>
+
+      <button
+        type="button"
+        className="mt-6"
+        onClick={() => setMensagemEnviada(false)}
+      >
+        Enviar outra mensagem
+      </button>
+    </main>
+  )
+}
 
   return (
     <main className="px-6 py-12">
