@@ -1,4 +1,3 @@
-
 export interface PerguntaFrequente {
 id: string
 pergunta: string
