@@ -5,8 +5,13 @@ interface CardValorProps {
 
 export default function CardValor({ titulo, descricao }: CardValorProps) {
   return (
-    <article className="rounded-2xl border border-[#D6E4FF] bg-white p-6">
-      <h2 className="text-xl font-bold text-[#0B1F3A]">
+    <article className="rounded-2xl border border-[#D6E4FF] bg-white p-6 shadow-xl shadow-blue-950/5 min-[768px]:p-8">
+      <span
+        className="block h-2 w-10 rounded-full bg-[#155EEF]"
+        aria-hidden="true"
+      ></span>
+
+      <h2 className="mt-5 text-xl font-bold text-[#0B1F3A] min-[768px]:text-2xl">
         {titulo}
       </h2>
 
