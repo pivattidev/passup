@@ -1,2 +1,19 @@
-@import "tailwindcss"
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/manrope";
+@import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: #ffffff;
+  font-family: "Inter Variable", sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Manrope Variable", sans-serif;
+}
