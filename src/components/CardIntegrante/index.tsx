@@ -20,6 +20,28 @@ export default function CardIntegrante({ integrante }: CardIntegranteProps) {
       <p className="mt-2 font-semibold text-[#155EEF]">
         {integrante.rm}
       </p>
+
+<div className="mt-5 flex flex-wrap gap-3">
+        <a
+          href={integrante.github}
+          target="_blank"
+          rel="noreferrer"
+          className="rounded-lg border border-[#D6E4FF] px-4 py-2 text-sm font-semibold text-[#155EEF] transition-colors hover:bg-[#EAF2FF] focus-visible:ring-2 focus-visible:ring-[#155EEF] focus-visible:ring-offset-2 focus-visible:outline-none"
+          aria-label={`Abrir GitHub de ${integrante.nome}`}
+        >
+          GitHub
+        </a>
+
+        <a
+          href={integrante.linkedin}
+          target="_blank"
+          rel="noreferrer"
+          className="rounded-lg border border-[#D6E4FF] px-4 py-2 text-sm font-semibold text-[#155EEF] transition-colors hover:bg-[#EAF2FF] focus-visible:ring-2 focus-visible:ring-[#155EEF] focus-visible:ring-offset-2 focus-visible:outline-none"
+          aria-label={`Abrir LinkedIn de ${integrante.nome}`}
+        >
+          LinkedIn
+        </a>
+      </div>
     </article>
   )
 }
