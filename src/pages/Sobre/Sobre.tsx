@@ -1,3 +1,5 @@
+import CardValor from '../../components/CardValor'
+
 export default function Sobre() {
   return (
     <main className="bg-[#F2F8FD] px-6 py-12 text-[#0B1F3A]">
@@ -35,6 +37,19 @@ export default function Sobre() {
           Transformar o dia a dia de quem utiliza o transporte público com uma
           plataforma simples, acessível e voltada à geração de benefícios.
         </p>
+      </section>
+      <section className="mx-auto mt-10 max-w-[1600px]">
+        <div className="grid gap-6 min-[768px]:grid-cols-2">
+          <CardValor
+            titulo="Nossa visão"
+            descricao="Ser uma referência em soluções que aproximem tecnologia, transporte público e inclusão social."
+          />
+
+          <CardValor
+            titulo="Nossos valores"
+            descricao="Inovação, sustentabilidade, inclusão, transparência e compromisso com as pessoas que utilizam a plataforma."
+          />
+        </div>
       </section>
     </main>
   )
