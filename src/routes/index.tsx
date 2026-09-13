@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import App from '../App'
 import Cadastro from '../pages/Cadastro/Cadastro'
 import Contato from '../pages/Contato/Contato'
+import DetalheResgate from '../pages/DetalheResgate/DetalheResgate'
 import Faq from '../pages/Faq/Faq'
 import Home from '../pages/Home/Home'
 import Integrantes from '../pages/Integrantes/Integrantes'
@@ -10,7 +11,6 @@ import PaginaNaoEncontrada from '../pages/PaginaNaoEncontrada/PaginaNaoEncontrad
 import Resgate from '../pages/Resgate/Resgate'
 import Saldo from '../pages/Saldo/Saldo'
 import Sobre from '../pages/Sobre/Sobre'
-import DetalheResgate from '../pages/DetalheResgate/DetalheResgate'
 
 export const router = createBrowserRouter([
   {
@@ -54,16 +54,12 @@ export const router = createBrowserRouter([
         element: <Resgate />,
       },
       {
-        path: '*',
-        element: <PaginaNaoEncontrada />,
-      },
-      {
-        path: 'resgate',
-        element: <Resgate />,
-      },
-      {
         path: 'resgate/:id',
         element: <DetalheResgate />,
+      },
+      {
+        path: '*',
+        element: <PaginaNaoEncontrada />,
       },
     ],
   },
