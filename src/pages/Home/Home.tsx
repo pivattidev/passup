@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <main className="text-[#0B1F3A]">
       <section className="bg-[#F2F8FD]">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 min-[768px]:py-16 min-[992px]:grid-cols-2">
+        <div className="mx-auto grid max-w-[1600px] items-center gap-10 px-6 py-14 min-[768px]:px-8 min-[768px]:py-16 min-[992px]:grid-cols-2 min-[992px]:px-12">
           <div>
             <h1 className="max-w-2xl text-4xl leading-tight font-bold min-[768px]:text-5xl min-[992px]:text-6xl">
               Sua participação pode levar você mais longe.
@@ -42,7 +42,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative bg-[#EAF2FF] px-4 pt-10 pb-14">
+      <section className="relative bg-[#EAF2FF] px-6 pt-10 pb-14 min-[768px]:px-8 min-[992px]:px-12">
         <div
           className="absolute top-0 left-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center"
           aria-hidden="true"
@@ -54,7 +54,7 @@ export default function Home() {
           <span className="h-3 w-3 rounded-full bg-[#12B76A]"></span>
         </div>
 
-        <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-[1600px]">
           <h2 className="text-3xl font-bold">
             Um caminho simples
           </h2>

@@ -21,7 +21,7 @@ export default function Cabecalho() {
   return (
     <header className="relative border-b border-[#D6E4FF] bg-white">
       <nav
-        className="mx-auto flex min-h-18 max-w-7xl items-center justify-between px-4"
+        className="mx-auto flex min-h-18 max-w-[1600px] items-center justify-between px-6 min-[768px]:px-8 min-[992px]:px-12"
         aria-label="Navegação principal"
       >
         <Link

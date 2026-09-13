@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 export default function Rodape() {
   return (
     <footer className="bg-[#0B1F3A] text-blue-100">
-      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-4 py-8 min-[768px]:grid-cols-3">
+      <div className="mx-auto grid max-w-[1600px] grid-cols-2 gap-8 px-6 py-8 min-[768px]:grid-cols-3 min-[768px]:px-8 min-[992px]:px-12">
         <div className="col-span-2 min-[768px]:col-span-1">
           <Link to="/" className="text-xl font-bold text-white">
             Pass Up
@@ -83,7 +83,7 @@ export default function Rodape() {
       </div>
 
       <div className="border-t border-blue-900">
-        <p className="mx-auto max-w-7xl px-4 py-4 text-center text-sm">
+        <p className="mx-auto max-w-[1600px] px-6 py-4 text-center text-sm min-[768px]:px-8 min-[992px]:px-12">
           &copy; 2026 Pass Up. Todos os direitos reservados.
         </p>
       </div>
