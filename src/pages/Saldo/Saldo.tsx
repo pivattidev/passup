@@ -1,16 +1,6 @@
 import { Link, useOutletContext } from 'react-router-dom'
-import ItemHistorico from '../../components/ItemHistorico/index '
+import ItemHistorico from '../../components/ItemHistorico'
 import type { ContextoAplicacao } from '../../types/Usuario'
-
-const historicoInicial = [
-  {
-    id: 1,
-    titulo: 'Conta criada',
-    descricao: 'Bônus inicial de boas-vindas',
-    data: 'Primeiro acesso',
-    pontos: 100,
-  },
-]
 
 function converterPontosEmReais(pontos: number) {
   return (pontos / 100).toLocaleString('pt-BR', {
@@ -20,23 +10,20 @@ function converterPontosEmReais(pontos: number) {
 }
 
 export default function Saldo() {
-  const { usuarioLogado } = useOutletContext<ContextoAplicacao>()
+  const { usuarioLogado, movimentacoes } = useOutletContext<ContextoAplicacao>()
 
   if (!usuarioLogado) {
     return (
       <main className="bg-[#F2F8FD] px-6 py-20 text-[#0B1F3A] min-[768px]:px-8">
         <section className="mx-auto max-w-2xl rounded-2xl bg-white p-8 text-center shadow-xl shadow-blue-950/5 min-[768px]:p-12">
-          <p className="font-semibold text-[#155EEF]">
-            Acesso necessário
-          </p>
+          <p className="font-semibold text-[#155EEF]">Acesso necessário</p>
 
           <h1 className="mt-3 text-3xl font-bold min-[768px]:text-4xl">
             Entre para consultar seu saldo
           </h1>
 
           <p className="mx-auto mt-4 max-w-lg leading-7 text-[#475467]">
-            Seus pontos e movimentações ficam disponíveis depois que você acessa
-            sua conta.
+            Seus pontos e movimentações ficam disponíveis depois que você acessa sua conta.
           </p>
 
           <div className="mx-auto mt-8 flex max-w-xs items-center" aria-hidden="true">
@@ -63,17 +50,14 @@ export default function Saldo() {
     <main className="bg-[#F2F8FD] text-[#0B1F3A]">
       <div className="mx-auto max-w-[1600px] px-6 py-12 min-[768px]:px-8 min-[768px]:py-16 min-[992px]:px-12">
         <header>
-          <p className="font-semibold text-[#155EEF]">
-            Minha carteira
-          </p>
+          <p className="font-semibold text-[#155EEF]">Minha carteira</p>
 
           <h1 className="mt-2 text-3xl font-bold tracking-tight min-[768px]:text-4xl">
             Olá, {primeiroNome}
           </h1>
 
           <p className="mt-3 max-w-2xl leading-7 text-[#475467]">
-            Acompanhe os pontos conquistados e o valor disponível para usar em
-            mobilidade.
+            Acompanhe os pontos conquistados e o valor disponível para usar em mobilidade.
           </p>
         </header>
 
@@ -84,13 +68,8 @@ export default function Saldo() {
           >
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div>
-                <p className="text-sm font-medium text-blue-100">
-                  Pass Up
-                </p>
-
-                <h2 id="titulo-saldo" className="mt-1 text-xl font-semibold">
-                  Saldo disponível
-                </h2>
+                <p className="text-sm font-medium text-blue-100">Pass Up</p>
+                <h2 id="titulo-saldo" className="mt-1 text-xl font-semibold">Saldo disponível</h2>
               </div>
 
               <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-sm font-medium">
@@ -104,24 +83,13 @@ export default function Saldo() {
                 <p className="text-5xl font-bold tracking-tight tabular-nums min-[768px]:text-6xl">
                   {usuarioLogado.pontos.toLocaleString('pt-BR')}
                 </p>
-
-                <p className="mt-2 text-blue-100">
-                  pontos disponíveis
-                </p>
+                <p className="mt-2 text-blue-100">pontos disponíveis</p>
               </div>
 
               <div className="rounded-2xl bg-white/10 px-5 py-4">
-                <p className="text-sm text-blue-100">
-                  Equivalente aproximado
-                </p>
-
-                <p className="mt-1 text-2xl font-semibold tabular-nums">
-                  {valorEmReais}
-                </p>
-
-                <p className="mt-1 text-xs text-blue-100">
-                  em créditos de transporte
-                </p>
+                <p className="text-sm text-blue-100">Equivalente aproximado</p>
+                <p className="mt-1 text-2xl font-semibold tabular-nums">{valorEmReais}</p>
+                <p className="mt-1 text-xs text-blue-100">em créditos de transporte</p>
               </div>
             </div>
 
@@ -158,10 +126,7 @@ export default function Saldo() {
           >
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
-                <p className="text-sm font-semibold text-[#155EEF]">
-                  Movimentações
-                </p>
-
+                <p className="text-sm font-semibold text-[#155EEF]">Movimentações</p>
                 <h2 id="titulo-historico" className="mt-1 text-2xl font-bold">
                   Histórico de pontos
                 </h2>
@@ -176,18 +141,24 @@ export default function Saldo() {
               Veja como seus pontos chegaram até aqui.
             </p>
 
-            <ol className="mt-8">
-              {historicoInicial.map((movimentacao, indice) => (
-                <ItemHistorico
-                  key={movimentacao.id}
-                  titulo={movimentacao.titulo}
-                  descricao={movimentacao.descricao}
-                  data={movimentacao.data}
-                  pontos={movimentacao.pontos}
-                  ultimo={indice === historicoInicial.length - 1}
-                />
-              ))}
-            </ol>
+            {movimentacoes.length > 0 ? (
+              <ol className="mt-8">
+                {movimentacoes.map((movimentacao, indice) => (
+                  <ItemHistorico
+                    key={movimentacao.id}
+                    titulo={movimentacao.titulo}
+                    descricao={movimentacao.descricao}
+                    data={movimentacao.data}
+                    pontos={movimentacao.pontos}
+                    ultimo={indice === movimentacoes.length - 1}
+                  />
+                ))}
+              </ol>
+            ) : (
+              <p className="mt-8 rounded-xl bg-[#F7FAFF] p-5 text-sm text-[#475467]">
+                Nenhuma movimentação registrada.
+              </p>
+            )}
           </section>
         </div>
       </div>
