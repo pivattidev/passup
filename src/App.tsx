@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Outlet } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Outlet, useLocation } from 'react-router-dom'
 import Cabecalho from './components/Cabecalho'
 import Rodape from './components/Rodape'
 import type { ContextoAplicacao, Usuario } from './types/Usuario'
@@ -7,6 +7,11 @@ import type { ContextoAplicacao, Usuario } from './types/Usuario'
 export default function App() {
   const [usuarioCadastrado, setUsuarioCadastrado] = useState<Usuario | null>(null)
   const [usuarioLogado, setUsuarioLogado] = useState<Usuario | null>(null)
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
 
   function cadastrarUsuario(usuario: Usuario) {
     setUsuarioCadastrado(usuario)
