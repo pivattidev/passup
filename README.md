@@ -30,7 +30,7 @@
 - [Estrutura de pastas](#-estrutura-de-pastas)
 - [Como executar](#-como-executar)
 - [Como usar](#-como-usar)
-- [Repositório e vídeo](#-repositório-e-vídeo)
+- [Acesso ao projeto](#-acesso-ao-projeto)
 - [Equipe](#-equipe)
 - [Contato](#-contato)
 
@@ -202,6 +202,16 @@ passup/
 
 ## 🚀 Como executar
 
+### Acesso online
+
+A forma mais simples de utilizar o Pass Up é acessar a aplicação publicada na Vercel:
+
+**[Acessar o Pass Up](https://passup-three.vercel.app/)**
+
+Não é necessário instalar nenhuma dependência para utilizar essa versão.
+
+### Execução local
+
 ### Pré-requisitos
 
 - [Node.js](https://nodejs.org/) em versão LTS
@@ -240,21 +250,22 @@ npm run preview
 
 ## 🧭 Como usar
 
-1. Acesse a página **Criar conta** e preencha os dados solicitados.
-2. Entre na plataforma usando o mesmo e-mail e senha do cadastro.
-3. Consulte os 100 pontos iniciais na página **Saldo**.
-4. Escolha **Resgatar pontos** e informe a quantidade e o cartão de transporte.
-5. Revise os dados e confirme o resgate.
-6. Consulte o comprovante e o token temporário gerado pela aplicação.
+1. Acesse a [versão online do Pass Up](https://passup-three.vercel.app/) ou execute o projeto localmente.
+2. Abra a página **Criar conta** e preencha os dados solicitados.
+3. Entre na plataforma usando o mesmo e-mail e senha do cadastro.
+4. Consulte os 100 pontos iniciais na página **Saldo**.
+5. Escolha **Resgatar pontos** e informe a quantidade e o cartão de transporte.
+6. Revise os dados e confirme o resgate.
+7. Consulte o comprovante e o token temporário gerado pela aplicação.
 
 Como esta versão não utiliza API nem banco de dados, os dados simulados permanecem apenas enquanto a aplicação estiver aberta.
 
 ---
 
-## 🔗 Repositório e vídeo
+## 🔗 Acesso ao projeto
 
+- **Aplicação online:** [passup-three.vercel.app](https://passup-three.vercel.app/)
 - **Repositório:** [github.com/pivattidev/passup](https://github.com/pivattidev/passup)
-- **Vídeo de apresentação no YouTube:** adicionar o link após a publicação do vídeo
 
 ---
 
@@ -274,7 +285,6 @@ Projeto desenvolvido por estudantes do curso de **Análise e Desenvolvimento de 
 
 ## 📬 Contato
 
-- **E-mail:** [sac@soulup.io](mailto:sac@soulup.io)
 - **GitHub:** os integrantes podem ser encontrados pelos perfis indicados na seção da equipe.
 - **Aplicação:** a página de contato permite registrar dúvidas, sugestões e comentários de forma simulada.
 
