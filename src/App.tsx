@@ -1,122 +1,127 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react'
+import { Outlet, useLocation } from 'react-router-dom'
+import Cabecalho from './components/Cabecalho'
+import Rodape from './components/Rodape'
+import type { Movimentacao, ResgateRealizado } from './types/Resgate'
+import type { ContextoAplicacao, Usuario } from './types/Usuario'
 
-function App() {
-  const [count, setCount] = useState(0)
+function gerarToken() {
+  const trechoData = Date.now().toString(36).slice(-4)
+  const trechoAleatorio = Math.random().toString(36).slice(2, 6)
 
-  return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+  return `PASS-${trechoData}-${trechoAleatorio}`.toUpperCase()
 }
 
-export default App
+function formatarData(data: number) {
+  return new Date(data).toLocaleString('pt-BR', {
+    day: '2-digit',
+    month: 'short',
+    hour: '2-digit',
+    minute: '2-digit',
+  })
+}
+
+export default function App() {
+  const [usuarioCadastrado, setUsuarioCadastrado] = useState<Usuario | null>(null)
+  const [usuarioLogado, setUsuarioLogado] = useState<Usuario | null>(null)
+  const [movimentacoes, setMovimentacoes] = useState<Movimentacao[]>([])
+  const [resgates, setResgates] = useState<ResgateRealizado[]>([])
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+
+  function cadastrarUsuario(usuario: Usuario) {
+    const agora = Date.now()
+
+    setUsuarioCadastrado(usuario)
+    setUsuarioLogado(null)
+    setResgates([])
+    setMovimentacoes([
+      {
+        id: `cadastro-${agora}`,
+        titulo: 'Conta criada',
+        descricao: 'Bônus inicial de boas-vindas',
+        data: formatarData(agora),
+        pontos: 100,
+      },
+    ])
+  }
+
+  function entrar(usuario: Usuario) {
+    setUsuarioLogado(usuario)
+  }
+
+  function realizarResgate(pontos: number, cartao: string) {
+    if (!usuarioLogado || pontos < 100 || pontos % 100 !== 0 || pontos > usuarioLogado.pontos) {
+      return null
+    }
+
+    const agora = Date.now()
+    const usuarioAtualizado = {
+      ...usuarioLogado,
+      pontos: usuarioLogado.pontos - pontos,
+    }
+
+    const numeroCartao = cartao.replace(/\D/g, '')
+
+    const novoResgate: ResgateRealizado = {
+      id: agora.toString(),
+      pontos,
+      valor: pontos / 100,
+      finalCartao: numeroCartao.slice(-4),
+      token: gerarToken(),
+      criadoEm: agora,
+      expiraEm: agora + 24 * 60 * 60 * 1000,
+    }
+
+    setUsuarioLogado(usuarioAtualizado)
+
+    setUsuarioCadastrado((usuarioAtual) =>
+      usuarioAtual?.email === usuarioLogado.email
+        ? usuarioAtualizado
+        : usuarioAtual,
+    )
+
+    setResgates((resgatesAtuais) => [
+      novoResgate,
+      ...resgatesAtuais,
+    ])
+
+    setMovimentacoes((movimentacoesAtuais) => [
+      {
+        id: `resgate-${agora}`,
+        titulo: 'Resgate realizado',
+        descricao: `Cartão com final ${novoResgate.finalCartao}`,
+        data: formatarData(agora),
+        pontos: -pontos,
+      },
+      ...movimentacoesAtuais,
+    ])
+
+    return novoResgate
+  }
+
+  const contextoAplicacao: ContextoAplicacao = {
+    usuarioCadastrado,
+    usuarioLogado,
+    movimentacoes,
+    resgates,
+    cadastrarUsuario,
+    entrar,
+    realizarResgate,
+  }
+
+  return (
+    <div className="flex min-h-screen flex-col">
+      <Cabecalho />
+
+      <div className="flex-1">
+        <Outlet context={contextoAplicacao} />
+      </div>
+
+      <Rodape />
+    </div>
+  )
+}
