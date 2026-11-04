@@ -64,12 +64,24 @@ export default function DetalheTransporte() {
     evento.preventDefault()
     if (estado.status !== 'sucesso' || !dados) return
 
+    const dadosNormalizados = {
+      tipoTransporte: dados.tipoTransporte.trim(),
+      nomeCartao: dados.nomeCartao.trim(),
+      operadora: dados.operadora.trim(),
+    }
+
+    if (Object.values(dadosNormalizados).some((valor) => valor.length === 0)) {
+      setErroSalvar(true)
+      setMensagem('Preencha todos os campos com valores válidos.')
+      return
+    }
+
     setSalvando(true)
     setMensagem('')
     setErroSalvar(false)
 
     try {
-      await atualizarTransporte({ ...dados, idTransporte: estado.dados.idTransporte })
+      await atualizarTransporte({ ...dadosNormalizados, idTransporte: estado.dados.idTransporte })
       const atualizado = await buscarTransporte(estado.dados.idTransporte)
       setEstado({ status: 'sucesso', dados: atualizado })
       setDados({
