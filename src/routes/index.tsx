@@ -11,6 +11,8 @@ import PaginaNaoEncontrada from '../pages/PaginaNaoEncontrada/PaginaNaoEncontrad
 import Resgate from '../pages/Resgate/Resgate'
 import Saldo from '../pages/Saldo/Saldo'
 import Sobre from '../pages/Sobre/Sobre'
+import DetalheTransporte from '../pages/DetalheTransporte/DetalheTransporte'
+import Transportes from '../pages/Transportes/Transportes'
 
 export const router = createBrowserRouter([
   {
@@ -52,6 +54,14 @@ export const router = createBrowserRouter([
       {
         path: 'resgate',
         element: <Resgate />,
+      },
+      {
+        path: 'transportes',
+        element: <Transportes />,
+      },
+      {
+        path: 'transportes/:id',
+        element: <DetalheTransporte />,
       },
       {
         path: 'resgate/:id',

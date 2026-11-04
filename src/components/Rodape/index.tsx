@@ -78,6 +78,12 @@ export default function Rodape() {
                 Resgatar pontos
               </Link>
             </li>
+
+            <li>
+              <Link to="/transportes" className="hover:text-white">
+                Opções de transporte
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>
