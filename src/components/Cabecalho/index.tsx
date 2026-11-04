@@ -109,6 +109,16 @@ export default function Cabecalho() {
                 Contato
               </NavLink>
             </li>
+
+            <li>
+              <NavLink
+                to="/transportes"
+                className={definirClasseLink}
+                onClick={fecharMenu}
+              >
+                Transportes
+              </NavLink>
+            </li>
           </ul>
 
           <div className="flex flex-col gap-3 min-[992px]:flex-row">
