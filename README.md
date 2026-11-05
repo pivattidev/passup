@@ -266,6 +266,7 @@ Como esta versão não utiliza API nem banco de dados, os dados simulados perman
 
 - **Aplicação online:** [passup-three.vercel.app](https://passup-three.vercel.app/)
 - **Repositório:** [github.com/pivattidev/passup](https://github.com/pivattidev/passup)
+- **Video do Youtube:** [youtube.com/PassUP-AstroDevs](https://youtu.be/gBsC-FL1Odk)
 
 ---
 
